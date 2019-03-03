@@ -38,12 +38,12 @@ namespace demoCodeCompletion
         {
             if (_completionWindow != null) return;
             IList<MyCompletionData> tipData = null;
-            var lead = GetLeading();
+            var lead = GetLeading();  // 这里得到 a.b.c
             bool hasDot = false;
             if (lead.Contains("."))
             {
                 hasDot = true;
-                lead = lead.Split('.').Last();
+                lead = lead.Split('.').Last();  //这里得到 c
             }
 
             if(lead.Length>0)
@@ -74,6 +74,7 @@ namespace demoCodeCompletion
 
             if (tipData == null) return;
             _completionWindow = new CompletionWindow(CodeEditor.TextArea);
+            _completionWindow.ResizeMode = ResizeMode.NoResize;
             var data = _completionWindow.CompletionList.CompletionData;
             foreach (var item in tipData)
             {
